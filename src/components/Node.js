@@ -30,21 +30,24 @@ const Node = ({ node, onMove, onStartConnect, onFinishConnect, onRemove }) => {
         position: "absolute",
         left: node.x,
         top: node.y,
-        width: "150px",
-        padding: "10px",
-        background: "#fff",
-        border: "1px solid black",
-        borderRadius: "5px",
+        width: "180px",
+        padding: "12px",
+        background: "#ffffff",
+        border: "2px solid #4a90e2",
+        borderRadius: "8px",
         cursor: "move",
-        boxShadow: "2px 2px 8px rgba(0,0,0,0.1)"
+        boxShadow: "3px 3px 10px rgba(0,0,0,0.15)",
+        userSelect: "none",
       }}
     >
-      <div><strong>{node.product.title}</strong></div>
-      <div>${node.product.price}</div>
-      <div style={{ marginTop: 5 }}>
+      <div style={{ marginBottom: 8 }}>
+        <strong>{node.product.title}</strong>
+      </div>
+      <div style={{ marginBottom: 10 }}>${node.product.price}</div>
+      <div style={{ display: "flex", justifyContent: "space-between", gap: 4 }}>
         <button onClick={onStartConnect}>Connect</button>
         <button onClick={onFinishConnect}>To</button>
-        <button onClick={onRemove}>X</button>
+        <button onClick={onRemove} style={{ color: "red" }}>X</button>
       </div>
     </div>
   );

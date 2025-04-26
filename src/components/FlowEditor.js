@@ -17,26 +17,52 @@ const FlowEditor = ({ nodes, edges, onMove, onConnect, onRemoveNode, onRemoveEdg
   const getNodeById = (id) => nodes.find((n) => n.id === id);
 
   return (
-    <div ref={editorRef} style={{ flex: 1, position: "relative", background: "#f9f9f9" }}>
+    <div
+      ref={editorRef}
+      style={{
+        flex: 1,
+        position: "relative",
+        background: "#eef2f7",
+        border: "3px dashed #4a90e2",
+        margin: "10px",
+        borderRadius: "10px",
+        overflow: "hidden",
+      }}
+    >
       <svg style={{ position: "absolute", width: "100%", height: "100%" }}>
         {edges.map((edge) => {
           const from = getNodeById(edge.from);
           const to = getNodeById(edge.to);
           if (!from || !to) return null;
-          const x1 = from.x + 75;
-          const y1 = from.y + 30;
-          const x2 = to.x + 75;
-          const y2 = to.y + 30;
+          const x1 = from.x + 90;
+          const y1 = from.y + 40;
+          const x2 = to.x + 90;
+          const y2 = to.y + 40;
           return (
             <g key={edge.id}>
-              <line x1={x1} y1={y1} x2={x2} y2={y2} stroke="black" strokeWidth={2} markerEnd="url(#arrow)" />
-              <circle cx={(x1 + x2) / 2} cy={(y1 + y2) / 2} r="6" fill="red" onClick={() => onRemoveEdge(edge.id)} />
+              <line
+                x1={x1}
+                y1={y1}
+                x2={x2}
+                y2={y2}
+                stroke="#555"
+                strokeWidth={2}
+                markerEnd="url(#arrow)"
+              />
+              <circle
+                cx={(x1 + x2) / 2}
+                cy={(y1 + y2) / 2}
+                r="6"
+                fill="#ff4d4f"
+                onClick={() => onRemoveEdge(edge.id)}
+                style={{ cursor: "pointer" }}
+              />
             </g>
           );
         })}
         <defs>
           <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
-            <path d="M0,0 L0,6 L9,3 z" fill="#000" />
+            <path d="M0,0 L0,6 L9,3 z" fill="#555" />
           </marker>
         </defs>
       </svg>
